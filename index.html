@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Digital Clock</title>
+  <style>
+    body { display: flex; align-items: center; justify-content: center;
+           height: 100vh; font-family: 'Segoe UI', sans-serif;
+           background: #282c34; color: #61dafb; }
+    #clock { font-size: 4rem; letter-spacing: 0.1rem; }
+  </style>
+</head>
+<body>
+  <div id="clock">00:00:00 AM</div>
+  <script>
+    function addZero(n) { return n < 10 ? '0' + n : n; }
+    function showTime() {
+      const now = new Date();
+      let h = now.getHours();
+      const m = now.getMinutes();
+      const s = now.getSeconds();
+      const ampm = h < 12 ? 'AM' : 'PM';
+      h = h % 12 || 12;
+      const timeStr = `${addZero(h)}:${addZero(m)}:${addZero(s)} ${ampm}`;
+      document.getElementById('clock').innerText = timeStr;
+    }
+    showTime();
+    setInterval(showTime, 1000);
+  </script>
+</body>
+</html>
